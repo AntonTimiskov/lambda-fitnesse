@@ -20,7 +20,7 @@ custom:
 
 functions:
   lambdaFitnesse:
-    handler: handler.runTest
+    handler: handler.lambdaFitnesse
 
 plugins:
   - serverless-run-function-plugin

@@ -37,7 +37,7 @@ RUN cd /binaries && \
     cd /binaries/waferslim-1.0.2 && \
     python3 setup.py install
 
-WORKDIR /lambda-fitnesse
+WORKDIR /binaries
 
 
 CMD ["/bin/bash"]

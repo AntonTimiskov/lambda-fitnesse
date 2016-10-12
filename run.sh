@@ -41,7 +41,9 @@ echo "Building..."
 
 echo "Running... $CMD"
 sudo docker run -ti --rm \
-     -v "$(pwd):/lambda-fitnesse" \
+     -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
+     -v "$(pwd)/handler.js:/binaries/handler.js" \
+     -v "$(pwd)/event.json:/binaries/event.json" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
      lambda-fitnesse:latest \
      $CMD
