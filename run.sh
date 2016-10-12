@@ -44,6 +44,7 @@ sudo docker run -ti --rm \
      -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
      -v "$(pwd)/handler.js:/binaries/handler.js" \
      -v "$(pwd)/event.json:/binaries/event.json" \
+     -v "$FITNESSE_ROOT:/binaries/FITNESSE_ROOT" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
      lambda-fitnesse:latest \
      $CMD
