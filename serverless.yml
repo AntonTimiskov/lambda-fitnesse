@@ -1,0 +1,27 @@
+service: lambda-fitnesse
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+  stage: dev
+
+  iamRoleStatements:
+      - Effect: "Allow"
+        Action: "logs:*"
+        Resource: "*"
+      - Effect: "Allow"
+        Action: "lambda:*"
+        Resource: "*"
+custom:
+  writeEnvVars:
+    FIXTURES: ${opt:fixtures}
+    FITNESSE_ROOT: ${opt:root}
+
+functions:
+  lambdaFitnesse:
+    handler: handler.runTest
+
+plugins:
+  - serverless-run-function-plugin
+  - serverless-plugin-write-env-vars
