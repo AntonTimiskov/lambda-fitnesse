@@ -36,8 +36,11 @@ if [[ $1 == "invoke" ]]; then
 fi
 
 
-echo "Building..."
-./build.sh  > /dev/null
+#echo "Building..."
+#./build.sh  > /dev/null
+
+echo "Pulling..."
+sudo docker pull antontimiskov/labmda-fitnesse:latest 
 
 echo "Running... $CMD"
 sudo docker run -ti --rm \
