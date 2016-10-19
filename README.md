@@ -10,6 +10,7 @@ Run your [Fitnesse](http://fitnesse.org/) tests on [AWS lambda](https://aws.amaz
 - Every test have to take less than 5 minutes including setup and teardown (AWS lambda restriction)  
 
 # How to run your Fitnesse tests in AWS lambdas:
+Docker image to build and deploy: [on Dockerhub](https://hub.docker.com/r/antontimiskov/lambda-fitnesse/)  
 **TBD**
 
 # See Also
