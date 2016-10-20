@@ -17,7 +17,7 @@ RUN mkdir binaries && \
     tar xf python.tgz && \
     cd /binaries/Python-3.5.2 && \
     ls -al && \
-    ./configure && make && make install && \
+    ./configure --enable-shared --prefix=/usr/local LDFLAGS="-Wl,--rpath=/usr/local/lib" && make && make install && \
     rm -rf /binaries/* && \
     python3 --version
 
@@ -36,6 +36,9 @@ RUN cd /binaries && \
     unzip waferslim && \
     cd /binaries/waferslim-1.0.2 && \
     python3 setup.py install
+    
+RUN cd /binaries && \    
+    pyinstaller waferslim-1.0.2/waferslim/server.py
 
 WORKDIR /binaries
 
