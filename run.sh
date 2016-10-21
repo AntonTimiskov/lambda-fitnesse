@@ -35,19 +35,17 @@ if [[ $1 == "invoke" ]]; then
  CMD="sls invoke -f $fn -p ./event.json $*"
 fi
 
-
-#echo "Building..."
-#./build.sh  > /dev/null
-
-echo "Pulling..."
-sudo docker pull antontimiskov/labmda-fitnesse:latest 
+if [[ -z $FITNESSE_ROOT ]]; then
+  echo 'Define: $FITNESSE_ROOT environment variable before run.'
+  exit 1
+fi
 
 echo "Running... $CMD"
 sudo docker run -ti --rm \
      -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
      -v "$(pwd)/handler.js:/binaries/handler.js" \
      -v "$(pwd)/event.json:/binaries/event.json" \
-     -v "$FITNESSE_ROOT:/binaries/FITNESSE_ROOT" \
+     -v "$FITNESSE_ROOT:/binaries/FitnesseRoot" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
-     lambda-fitnesse:latest \
+     antontimiskov/lambda-fitnesse:latest \
      $CMD
