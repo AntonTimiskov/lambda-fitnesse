@@ -2,7 +2,7 @@
 function runTest(event, context, cb){ 
 
 	const exec = require('child_process').exec;
-	exec("java -jar fitnesse-standalone.jar -d 'FitnesseRoot' -c '" + event.test + "?test&format=xml&includehtml' -b '" + event.test + ".xml' -p 8080", (error, stdout, stderr) => {
+	exec("cp -a FitNesseRoot /tmp; chmod 755 /tmp; java -jar fitnesse-standalone.jar -d '/tmp' -c '" + event.test + "?test&format=xml&includehtml' -b '/tmp/" + event.test + ".xml' -p 8002; cat '/tmp/" + event.test + ".xml'", (error, stdout, stderr) => {
 	  if (error) {
 	    console.error(`exec error: ${error}`);
 	    return;
