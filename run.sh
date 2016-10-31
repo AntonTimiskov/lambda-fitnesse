@@ -40,12 +40,18 @@ if [[ -z $FITNESSE_ROOT ]]; then
   exit 1
 fi
 
+if [[ -z $FIXTURES ]]; then
+  echo 'Define: $FIXTURES environment variable before run.'
+  exit 1
+fi
+
 echo "Running... $CMD"
 sudo docker run -ti --rm \
      -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
      -v "$(pwd)/handler.js:/binaries/handler.js" \
      -v "$(pwd)/event.json:/binaries/event.json" \
-     -v "$FITNESSE_ROOT:/binaries/FitnesseRoot" \
+     -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
+     -v "$FIXTURES:/binaries/fixtures"\
      -e "SLS_DEBUG=$SLS_DEBUG" \
      antontimiskov/lambda-fitnesse:latest \
      $CMD

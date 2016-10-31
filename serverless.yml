@@ -13,10 +13,10 @@ provider:
       - Effect: "Allow"
         Action: "lambda:*"
         Resource: "*"
+
 custom:
   writeEnvVars:
-    FIXTURES: ${opt:fixtures}
-    FITNESSE_ROOT: ${opt:root}
+    API: ${opt:API}
 
 functions:
   lambdaFitnesse:
