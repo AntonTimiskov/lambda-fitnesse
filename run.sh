@@ -53,5 +53,6 @@ sudo docker run -ti --rm \
      -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
      -v "$FIXTURES:/binaries/fixtures"\
      -e "SLS_DEBUG=$SLS_DEBUG" \
+     -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      antontimiskov/lambda-fitnesse:latest \
      $CMD
