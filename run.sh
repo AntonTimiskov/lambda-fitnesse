@@ -53,6 +53,8 @@ sudo docker run -ti --rm \
      -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
      -v "$FIXTURES:/binaries/fixtures"\
      -e "SLS_DEBUG=$SLS_DEBUG" \
+     -e "API_GATEWAY=$API_GATEWAY" \
+     -e "JWT_ACCESS=$JWT_ACCESS" \
      -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      antontimiskov/lambda-fitnesse:latest \
      $CMD
