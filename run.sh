@@ -54,7 +54,8 @@ sudo docker run -ti --rm \
      -v "$FIXTURES:/binaries/fixtures"\
      -e "SLS_DEBUG=$SLS_DEBUG" \
      -e "API_GATEWAY=$API_GATEWAY" \
-     -e "JWT_ACCESS=$JWT_ACCESS" \
+     -e "CLIENT_ID=$CLIENT_ID" \
+     -e "CLIENT_SECRET=$CLIENT_SECRET" \
      -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      antontimiskov/lambda-fitnesse:latest \
      $CMD
