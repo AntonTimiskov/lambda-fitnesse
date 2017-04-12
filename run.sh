@@ -56,5 +56,6 @@ sudo docker run -ti --rm \
      -e "API_PORT=$API_PORT" \
      -e "API_PROTO=$API_PROTO" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
+     -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      antontimiskov/lambda-fitnesse:latest \
      $CMD
