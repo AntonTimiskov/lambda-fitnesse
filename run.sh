@@ -52,6 +52,9 @@ sudo docker run -ti --rm \
      -v "$(pwd)/event.json:/binaries/event.json" \
      -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
      -v "$FIXTURES:/binaries/fixtures"\
+     -e "API_HOST=$API_HOST" \
+     -e "API_PORT=$API_PORT" \
+     -e "API_PROTO=$API_PROTO" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
      antontimiskov/lambda-fitnesse:latest \
      $CMD
