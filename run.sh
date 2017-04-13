@@ -45,6 +45,11 @@ if [[ -z $FIXTURES ]]; then
   exit 1
 fi
 
+if [[ -z $CRYPT ]]; then
+  echo 'Define: $CRYPT environment variable before run.'
+  exit 1
+fi
+
 echo "Running... $CMD"
 sudo docker run -ti --rm \
      -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
@@ -52,6 +57,7 @@ sudo docker run -ti --rm \
      -v "$(pwd)/event.json:/binaries/event.json" \
      -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
      -v "$FIXTURES:/binaries/fixtures"\
+     -v "$CRYPT:/binaries/crypt"\
      -e "API_HOST=$API_HOST" \
      -e "API_PORT=$API_PORT" \
      -e "API_PROTO=$API_PROTO" \
