@@ -10,7 +10,7 @@ ENV AWS_REGION=us-east-1
 RUN apt-get update && \
     apt-get install -qq -y unzip
 
-RUN npm install ursa@0.9.4 -g
+RUN npm install ursa@0.9.4
 
 ENV PYTHON_URL https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
 RUN mkdir binaries && \
