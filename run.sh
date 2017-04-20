@@ -45,6 +45,11 @@ if [[ -z $FIXTURES ]]; then
   exit 1
 fi
 
+if [[ -z $IMAGE_NAME ]]; then
+  IMAGE_NAME="antontimiskov/lambda-fitnesse:latest"
+  echo 'IMAGE_NAME was not provided. Will use $IMAGE_NAME by default'
+fi
+
 if [[ -z $CRYPT ]]; then
   echo 'Define: $CRYPT environment variable before run.'
   exit 1
@@ -64,5 +69,5 @@ sudo docker run -ti --rm \
      -e "SLS_DEBUG=$SLS_DEBUG" \
      -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      --net=dmp \
-     antontimiskov/lambda-fitnesse:latest \
+     $IMAGE_NAME \
      $CMD
