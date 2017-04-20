@@ -45,6 +45,11 @@ if [[ -z $FIXTURES ]]; then
   exit 1
 fi
 
+if [[ -z $PRODUCT_URL ]]; then
+  echo 'Define: $PRODUCT_URL environment variable before run.'
+  exit 1
+fi
+
 if [[ -z $IMAGE_NAME ]]; then
   IMAGE_NAME="antontimiskov/lambda-fitnesse:latest"
   echo 'IMAGE_NAME was not provided. Will use $IMAGE_NAME by default'
@@ -67,6 +72,7 @@ sudo docker run -ti --rm \
      -e "API_PORT=$API_PORT" \
      -e "API_PROTO=$API_PROTO" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
+     -e "PRODUCT_URL=$PRODUCT_URL" \
      -p "$FITNESSE_PORT:$FITNESSE_PORT"\
      --net=dmp \
      $IMAGE_NAME \
