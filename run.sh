@@ -45,6 +45,16 @@ if [[ -z $FIXTURES ]]; then
   exit 1
 fi
 
+if [[ -z $IMAGE_NAME ]]; then
+  IMAGE_NAME="antontimiskov/lambda-fitnesse:latest"
+  echo 'IMAGE_NAME was not provided. Will use $IMAGE_NAME by default'
+fi
+
+if [[ -z $CRYPT ]]; then
+  echo 'Define: $CRYPT environment variable before run.'
+  exit 1
+fi
+
 echo "Running... $CMD"
 sudo docker run -ti --rm \
      -v "$(pwd)/serverless.yml:/binaries/serverless.yml" \
@@ -52,6 +62,12 @@ sudo docker run -ti --rm \
      -v "$(pwd)/event.json:/binaries/event.json" \
      -v "$FITNESSE_ROOT:/binaries/FitNesseRoot" \
      -v "$FIXTURES:/binaries/fixtures"\
+     -v "$CRYPT:/binaries/crypt"\
+     -e "API_HOST=$API_HOST" \
+     -e "API_PORT=$API_PORT" \
+     -e "API_PROTO=$API_PROTO" \
      -e "SLS_DEBUG=$SLS_DEBUG" \
-     antontimiskov/lambda-fitnesse:latest \
+     -p "$FITNESSE_PORT:$FITNESSE_PORT"\
+     --net=dmp \
+     $IMAGE_NAME \
      $CMD
